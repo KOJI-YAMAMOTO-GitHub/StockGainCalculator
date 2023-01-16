@@ -39,6 +39,10 @@
                 <td><output id="resultCommisons">-</output>円</td>
             </tr>
             <tr>
+                <td>手数料に対する消費税</td>
+                <td><output id="resultCommisonsTax">-</output>円</td>
+            </tr>
+            <tr>
                 <td>手数料差引き後損益額</td>
                 <td><output id="result2">-</output>円</td>
             </tr>
@@ -88,8 +92,11 @@
                 resultCommisions.value = (parseInt(Number(salesPrice) / 1000000, 10) - 3) * 295 + 1691;
             }
 
+            var resultCommisonsTax = document.getElementById("resultCommisonsTax");
+            resultCommisonsTax.value = (parseInt(Number(resultCommisions.value) * 0.1, 10));
+
             var result2 = document.getElementById("result2");
-            result2.value = Number(result1.value) - Number(resultCommisions.value);
+            result2.value = Number(result1.value) - Number(resultCommisions.value) - Number(resultCommisonsTax.value);
 
             var tax = document.getElementById("tax");
             tax.value = parseInt(Number(result2.value) * 0.20315, 10);
